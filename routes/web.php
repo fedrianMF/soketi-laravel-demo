@@ -29,12 +29,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         $notification = $request->user()->notifications()->create([
             'text' => $request->text
         ]);
-        //$notification->user->notify(new App\Notifications\NewChat($notification));
+        $notification->user->notify(new App\Notifications\NewChat($notification));
         return ['status' => 'Notification Created'];
     })->middleware(['auth', 'verified'])->name('notification');
 
     Route::get('notifications', function (Request $request) {
-        return $request->user()->notifications()->whereNull('viewed_at')->get();
+        return Notification::where('user_id', '!=', $request->user()->id)->whereNull('viewed_at')->get();
     })->middleware(['auth', 'verified'])->name('notifications');
 
     Route::put('notification/{id}', function (int $id) {

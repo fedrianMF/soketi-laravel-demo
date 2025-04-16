@@ -10,9 +10,9 @@ const users = ref([]);
 const user = computed(() => usePage().props.value.auth.user);
 
 const fetchMessages = () => {
-  axios.get("/messages").then((response) => {
-    messages.value = response.data;
-  });
+    axios.get("/messages").then((response) => {
+        messages.value = response.data;
+    });
 };
 
 const addMessage = (message) => {
@@ -25,13 +25,14 @@ const addMessage = (message) => {
 onMounted(() => {
     fetchMessages();
 
-    /*Echo.join("chat").here((receivedUsers) => {
+    Echo.join("chat").here((receivedUsers) => {
         users.value = receivedUsers;
     }).joining((user) => {
         users.value.push(user);
     }).leaving((user) => {
         users.value = users.value.filter((u) => u.id !== user.id);
     }).listenForWhisper("typing", ({ id, name }) => {
+        console.log("typing rec");
         users.value = users.value.map((user) => {
             if (user.id === id) {
                 return { ...user, typing: true };
@@ -50,13 +51,13 @@ onMounted(() => {
             }
             return user;
         });
-    });*/
+    });
 });
 
-/*Echo.channel("notification").listen("MessageNotification", (e) => {
+Echo.channel("notification").listen("MessageNotification", (e) => {
     alert(e.message);
     console.log(e.message);
-});*/
+});
 </script>
 
 <template>

@@ -29,9 +29,12 @@ class ChatsController extends Controller
         $message = $user->messages()->create([
             'message' => $request->message
         ]);
-
-        //broadcast(new MessageSent(auth()->user(), $message))->toOthers();
-        //Notification::send(auth()->user(), new NewChat($message));
+        $users = User::where('id', '!=', $request->user()->id)->get();
+        $notification = $request->user()->notifications()->create([
+            'text' => 'New Message from ' . $user->name,
+        ]);
+        broadcast(new MessageSent(Auth::user(), $message))->toOthers();
+        Notification::send($users, new NewChat($notification));
         return ['status' => 'Message Sent!'];
     }
 }
