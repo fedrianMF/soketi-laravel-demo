@@ -41,8 +41,6 @@ php artisan key:generate
 ```
 
 Cambiar las siguientes variables del archivo .env
-
-
     DB_CONNECTION=pgsql
     DB_HOST=127.0.0.1
     DB_PORT=5432
@@ -55,12 +53,14 @@ Cambiar las siguientes variables del archivo .env
     PUSHER_APP_ID=some-id
     PUSHER_APP_KEY=some-key
     PUSHER_APP_SECRET=some-secret
+    PUSHER_SCHEME=http
+    PUSHER_APP_CLUSTER=mt1
 
-    MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
-    MIX_PUSHER_HOST="${PUSHER_HOST}"
-    MIX_PUSHER_PORT="${PUSHER_PORT}"
-    MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
-    MIX_PUSHER_SCHEME="${PUSHER_SCHEME}"
+    VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+    VITE_PUSHER_HOST="${PUSHER_HOST}"
+    VITE_PUSHER_PORT="${PUSHER_PORT}"
+    VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
+    VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
 Continua con los siguientes comandos
 
